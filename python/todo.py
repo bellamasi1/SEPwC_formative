@@ -9,9 +9,9 @@ def add_task(task):
     Input - a task to add to the list
     Return - nothing
     """
-    #Open the task file in append mode ('a') so we can add new task without erasing existing ones
+    #Open the task file in append mode ('a') so we can add new task without erasing existing tasks 
     with open(TASK_FILE, "a", encoding="utf-8") as file :
-        #Write the task followed by a newline character, so each task appears on a new line             
+        #Write the task followed by a newline character so each task appears on a new line             
         file.write(task + "\n")
        
        
@@ -34,10 +34,21 @@ def list_tasks():
 
 
 def remove_task(index):
-    with open()
-    
+    with open(TASK_FILE, 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+        #Lines 39,40,41 code taken from Gemini 
+        #Check if the index is valid before attempting to pop 
+        if 1 <= index <= len(lines):
+            removed_line = lines.pop(index - 1)
+        #updated list written back to file 
+    with open(TASK_FILE, 'w', encoding="utf-8") as file:
+            file.writelines(lines)
+            
+            print("Task removed")
+        else:
+            print("Invalid Task Number")
+           
    
-    
 
 def main():
     parser = argparse.ArgumentParser(description="Command-line Todo List")
